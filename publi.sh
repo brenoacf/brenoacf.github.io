@@ -22,10 +22,12 @@ fi
 # Check git status
 # ----------------
 if output=$(git status --porcelain) && [ -z "$output" ]; then
-    echo "Not to commit"
+    echo "Nothing to commit"
     exit
 fi
 
+# Commit on Github
+# ----------------
 echo "Commiting with message: $1"
 git add --all
 git commit -m "$1"
