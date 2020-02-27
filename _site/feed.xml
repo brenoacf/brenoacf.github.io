@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <description>Blog sobre desenvolvimento, engenharia e outras coisas :-)</description>
+    <link>http://localhost:4000//</link>
+    <atom:link href="http://localhost:4000//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 27 Feb 2020 11:43:19 -0300</pubDate>
+    <lastBuildDate>Thu, 27 Feb 2020 11:43:19 -0300</lastBuildDate>
+    <generator>Jekyll v4.0.0</generator>
+    
+      <item>
+        <title>Hello World</title>
+        <description>&lt;p&gt;&lt;strong&gt;Olá Mundo&lt;/strong&gt;. Clichê ou não, é sempre assim que se começa alguma coisa em se tratando de desenvolvimento de softwares. Eu mesmo já fiz muito &lt;em&gt;“Hello World”&lt;/em&gt; por aí.&lt;/p&gt;
+
+&lt;p&gt;Esta não é a primeira vez que tento manter um blog. Já tentei por várias vezes e o blog que conseguir manter por mais tempo foi o &lt;a href=&quot;https://quasehard.blogspot.com&quot;&gt;&lt;strong&gt;QuaseHard&lt;/strong&gt;&lt;/a&gt;. Comecei o blog em dezembro de 2008 com esperanças de escrever sobre muitos assuntos legais, aprender sobre arquiteturas de hardwares diferentes, etc. Com o tempo as postagens começaram a ficar muito espaçadas até chegar ao ponto de pararem.&lt;/p&gt;
+
+&lt;p&gt;Neste aqui mudarei a estratégia. Postarei apenas coisas relacionadas aos códigos que colocar no &lt;a href=&quot;https://www.github.com/brenoacf&quot;&gt;Git&lt;/a&gt;. Se por ventura surgirem coisas interessantes, postarei também, mas não será algo que me preocuparei. Vamos ver no que vai dar. De qualquer forma, se não der certo, o Hello World tá aí pra gente começar de novo! :-)&lt;/p&gt;
+
+&lt;p&gt;Grande abraço!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 24 Feb 2020 20:40:38 -0300</pubDate>
+        <link>http://localhost:4000//uncategorized/2020/02/24/hello-world.html</link>
+        <guid isPermaLink="true">http://localhost:4000//uncategorized/2020/02/24/hello-world.html</guid>
+        
+        
+        <category>Uncategorized</category>
+        
+      </item>
+    
+  </channel>
+</rss>
