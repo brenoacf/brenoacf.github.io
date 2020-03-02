@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  #1 Abap-Hacks - STVARV
+title:  #1 AbapHacks - STVARV
 date:   2020-03-02 11:38:00
 categories: ['SAP', 'ABAP']
 ---
 
 Este é o primeiro post falando sobre o repositório [**abap-hacks**](https://github.com/brenoacf/abap-hacks/) aqui do GitHub. Neste repositório espero colocar alguns códigos úteis que possam ser utilizados no dia a dia para agilizar o processo de desenvolvimento em ABAP.
 
-O primeiro código que disponibilizei no repositório é uma classe para acesso à TVARVC, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.
+O primeiro código que disponibilizei no repositório é uma [classe para acesso à TVARVC](https://github.com/brenoacf/abap-hacks/tree/master/stvarvc-extract), que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.
 
 A classe possue métodos estáticos que agilizam o trabalho de acesso à TVARVC para buscar os valores das constantes diretamente para dentro de RANGES. É possível acessar tanto parâmetros simples como parâmetros de vários itens. Também é possível buscar parâmetros com a utilização do caracter %.
 

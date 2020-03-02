@@ -1,6 +1,6 @@
-I"J<p>Este é o primeiro post falando sobre o repositório <a href="https://github.com/brenoacf/abap-hacks/"><strong>abap-hacks</strong></a> aqui do GitHub. Neste repositório espero colocar alguns códigos úteis que possam ser utilizados no dia a dia para agilizar o processo de desenvolvimento em ABAP.</p>
+I"�<p>Este é o primeiro post falando sobre o repositório <a href="https://github.com/brenoacf/abap-hacks/"><strong>abap-hacks</strong></a> aqui do GitHub. Neste repositório espero colocar alguns códigos úteis que possam ser utilizados no dia a dia para agilizar o processo de desenvolvimento em ABAP.</p>
 
-<p>O primeiro código que disponibilizei no repositório é uma classe para acesso à TVARVC, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.</p>
+<p>O primeiro código que disponibilizei no repositório é uma <a href="https://github.com/brenoacf/abap-hacks/tree/master/stvarvc-extract">classe para acesso à TVARVC</a>, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.</p>
 
 <p>A classe possue métodos estáticos que agilizam o trabalho de acesso à TVARVC para buscar os valores das constantes diretamente para dentro de RANGES. É possível acessar tanto parâmetros simples como parâmetros de vários itens. Também é possível buscar parâmetros com a utilização do caracter %.</p>
 

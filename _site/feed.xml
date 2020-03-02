@@ -3,17 +3,17 @@
   <channel>
     <title></title>
     <description>Blog sobre desenvolvimento, engenharia e outras coisas :-)</description>
-    <link>https://brenoacf.github.io//</link>
-    <atom:link href="https://brenoacf.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 02 Mar 2020 12:50:02 -0300</pubDate>
-    <lastBuildDate>Mon, 02 Mar 2020 12:50:02 -0300</lastBuildDate>
+    <link>http://localhost:4000//</link>
+    <atom:link href="http://localhost:4000//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 02 Mar 2020 13:21:54 -0300</pubDate>
+    <lastBuildDate>Mon, 02 Mar 2020 13:21:54 -0300</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
-        <title>#1 Abap  Hacks Stvarv</title>
+        <title>#1 Abap Hacks Stvarv</title>
         <description>&lt;p&gt;Este é o primeiro post falando sobre o repositório &lt;a href=&quot;https://github.com/brenoacf/abap-hacks/&quot;&gt;&lt;strong&gt;abap-hacks&lt;/strong&gt;&lt;/a&gt; aqui do GitHub. Neste repositório espero colocar alguns códigos úteis que possam ser utilizados no dia a dia para agilizar o processo de desenvolvimento em ABAP.&lt;/p&gt;
 
-&lt;p&gt;O primeiro código que disponibilizei no repositório é uma classe para acesso à TVARVC, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.&lt;/p&gt;
+&lt;p&gt;O primeiro código que disponibilizei no repositório é uma &lt;a href=&quot;https://github.com/brenoacf/abap-hacks/tree/master/stvarvc-extract&quot;&gt;classe para acesso à TVARVC&lt;/a&gt;, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.&lt;/p&gt;
 
 &lt;p&gt;A classe possue métodos estáticos que agilizam o trabalho de acesso à TVARVC para buscar os valores das constantes diretamente para dentro de RANGES. É possível acessar tanto parâmetros simples como parâmetros de vários itens. Também é possível buscar parâmetros com a utilização do caracter %.&lt;/p&gt;
 
@@ -68,8 +68,8 @@
 &lt;p&gt;Abraços.&lt;/p&gt;
 </description>
         <pubDate>Mon, 02 Mar 2020 08:38:00 -0300</pubDate>
-        <link>https://brenoacf.github.io//sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html</link>
-        <guid isPermaLink="true">https://brenoacf.github.io//sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html</guid>
+        <link>http://localhost:4000//sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html</link>
+        <guid isPermaLink="true">http://localhost:4000//sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html</guid>
         
         
         <category>SAP</category>
@@ -89,8 +89,8 @@
 &lt;p&gt;Grande abraço!&lt;/p&gt;
 </description>
         <pubDate>Mon, 24 Feb 2020 20:40:38 -0300</pubDate>
-        <link>https://brenoacf.github.io//uncategorized/2020/02/24/hello-world.html</link>
-        <guid isPermaLink="true">https://brenoacf.github.io//uncategorized/2020/02/24/hello-world.html</guid>
+        <link>http://localhost:4000//uncategorized/2020/02/24/hello-world.html</link>
+        <guid isPermaLink="true">http://localhost:4000//uncategorized/2020/02/24/hello-world.html</guid>
         
         
         <category>Uncategorized</category>
