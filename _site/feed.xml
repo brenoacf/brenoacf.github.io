@@ -5,9 +5,78 @@
     <description>Blog sobre desenvolvimento, engenharia e outras coisas :-)</description>
     <link>https://brenoacf.github.io//</link>
     <atom:link href="https://brenoacf.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 27 Feb 2020 12:52:28 -0300</pubDate>
-    <lastBuildDate>Thu, 27 Feb 2020 12:52:28 -0300</lastBuildDate>
+    <pubDate>Mon, 02 Mar 2020 12:50:02 -0300</pubDate>
+    <lastBuildDate>Mon, 02 Mar 2020 12:50:02 -0300</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
+    
+      <item>
+        <title>#1 Abap  Hacks Stvarv</title>
+        <description>&lt;p&gt;Este é o primeiro post falando sobre o repositório &lt;a href=&quot;https://github.com/brenoacf/abap-hacks/&quot;&gt;&lt;strong&gt;abap-hacks&lt;/strong&gt;&lt;/a&gt; aqui do GitHub. Neste repositório espero colocar alguns códigos úteis que possam ser utilizados no dia a dia para agilizar o processo de desenvolvimento em ABAP.&lt;/p&gt;
+
+&lt;p&gt;O primeiro código que disponibilizei no repositório é uma classe para acesso à TVARVC, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.&lt;/p&gt;
+
+&lt;p&gt;A classe possue métodos estáticos que agilizam o trabalho de acesso à TVARVC para buscar os valores das constantes diretamente para dentro de RANGES. É possível acessar tanto parâmetros simples como parâmetros de vários itens. Também é possível buscar parâmetros com a utilização do caracter %.&lt;/p&gt;
+
+&lt;p&gt;Para incorporá-la ao SAP você pode utilizar o arquivo NUGG, carregando-o para dentro do ZSAPLINK e importando como classe global no SAP. Você também pode optar por importá-la de uma classe local Z.&lt;/p&gt;
+
+&lt;p&gt;Para carregá-la pelo ZSAPLINK acesse o programa e apenas carregue o NUGG para o sistema:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/abap-hacks/img1.png&quot; alt=&quot;Importando via ZSAPLINK&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Para carregá-la por uma classe local, acesse a SE24 e vá ao menu importar-&amp;gt;Classes locais do programa:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/abap-hacks/img2.png&quot; alt=&quot;Importando via ZSAPLINK&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Segue o exemplo de utilização que também se &lt;a href=&quot;https://github.com/brenoacf/abap-hacks/tree/master/stvarvc-extract&quot;&gt;encontra no arquivo README&lt;/a&gt; da pasta no repositório:&lt;/p&gt;
+
+&lt;div class=&quot;language-abap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;&quot;! This code show how to use the zcl_stvarv_extract class.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;DATA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lv_value&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvari_val_255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ace_generic_range_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ace_generic_range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;lr_range_result&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ace_generic_range_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;* 1 - Fetching a single parameter&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lv_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zcl_stvarv_extract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_parameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Z_SINGLE_PARAM'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;* 2 - Seeking various parameters using the special character pattern&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zcl_stvarv_extract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Z_WERKS_%'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;* 3 - Searching for a range of parameters (LOW values)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;REFRESH&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sign&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'I'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'EQ'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;low&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Z_BUKRS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;APPEND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;low&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Z_WERDS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;APPEND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;low&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Z_GJAHR'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;APPEND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lv_range&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;lr_range_result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zcl_stvarv_extract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_parameters_by_range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lr_range&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;* 4 - Seeking a &quot;Select Options&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;REFRESH&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lr_range_result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lr_range_result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zcl_stvarv_extract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_selection_options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Z_SELECTION_PARAM'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Assim que tiver mais tempo, colocarei mais classes, rotinas e códigos para facilitar o desenvolvimento ABAP aqui no blog.&lt;/p&gt;
+
+&lt;p&gt;Abraços.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 02 Mar 2020 08:38:00 -0300</pubDate>
+        <link>https://brenoacf.github.io//sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html</link>
+        <guid isPermaLink="true">https://brenoacf.github.io//sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html</guid>
+        
+        
+        <category>SAP</category>
+        
+        <category>ABAP</category>
+        
+      </item>
     
       <item>
         <title>Hello World</title>

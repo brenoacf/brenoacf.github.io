@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>brenoacf Blog - Blog sobre desenvolvimento, engenharia e outras coisas :-)</title>
+    <meta name="description" content="brenoacf Blog, blog sobre desenvolvimento, engenharia e outras coisas" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/">Home</a>
+        <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">#1 Abap  Hacks Stvarv</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2020-03-02">02 Mar 2020</time>
+                
+                    on SAP and ABAP
+                
+            </section>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="https://brenoacf.github.io">
+                
+                    <span class="blog-title">brenoacf Blog</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2020-03-02">02 Mar 2020</time>
+            
+                on SAP and ABAP
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">#1 Abap  Hacks Stvarv</h1> -->
+
+        <section class="post-content">
+            <p>Este é o primeiro post falando sobre o repositório <a href="https://github.com/brenoacf/abap-hacks/"><strong>abap-hacks</strong></a> aqui do GitHub. Neste repositório espero colocar alguns códigos úteis que possam ser utilizados no dia a dia para agilizar o processo de desenvolvimento em ABAP.</p>
+
+<p>O primeiro código que disponibilizei no repositório é uma classe para acesso à TVARVC, que é responsável por armazenar variáveis globais do ambiente, de uso geral. Muitos projetos costumam utilizar esta tabela para o armazenamento de configurações utilizados em programas Z ou customizações no geral.</p>
+
+<p>A classe possue métodos estáticos que agilizam o trabalho de acesso à TVARVC para buscar os valores das constantes diretamente para dentro de RANGES. É possível acessar tanto parâmetros simples como parâmetros de vários itens. Também é possível buscar parâmetros com a utilização do caracter %.</p>
+
+<p>Para incorporá-la ao SAP você pode utilizar o arquivo NUGG, carregando-o para dentro do ZSAPLINK e importando como classe global no SAP. Você também pode optar por importá-la de uma classe local Z.</p>
+
+<p>Para carregá-la pelo ZSAPLINK acesse o programa e apenas carregue o NUGG para o sistema:</p>
+
+<p><img src="/assets/images/abap-hacks/img1.png" alt="Importando via ZSAPLINK" /></p>
+
+<p>Para carregá-la por uma classe local, acesse a SE24 e vá ao menu importar-&gt;Classes locais do programa:</p>
+
+<p><img src="/assets/images/abap-hacks/img2.png" alt="Importando via ZSAPLINK" /></p>
+
+<p>Segue o exemplo de utilização que também se <a href="https://github.com/brenoacf/abap-hacks/tree/master/stvarvc-extract">encontra no arquivo README</a> da pasta no repositório:</p>
+
+<div class="language-abap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">"! This code show how to use the zcl_stvarv_extract class.</span>
+
+<span class="k">DATA</span><span class="p">:</span> <span class="n">lv_value</span>        <span class="k">TYPE</span> <span class="n">rvari_val_255</span><span class="p">,</span>
+      <span class="n">lr_range</span>        <span class="k">TYPE</span> <span class="n">ace_generic_range_t</span><span class="p">,</span>
+      <span class="n">lv_range</span>        <span class="k">TYPE</span> <span class="n">ace_generic_range</span><span class="p">,</span>
+      <span class="n">lr_range_result</span> <span class="k">TYPE</span> <span class="n">ace_generic_range_t</span><span class="p">.</span>
+
+<span class="cm">* 1 - Fetching a single parameter</span>
+<span class="n">lv_value</span> <span class="o">=</span> <span class="n">zcl_stvarv_extract</span><span class="o">=&gt;</span><span class="n">get_parameter</span><span class="p">(</span> <span class="s1">'Z_SINGLE_PARAM'</span> <span class="p">).</span>
+
+<span class="cm">* 2 - Seeking various parameters using the special character pattern</span>
+<span class="n">lr_range</span> <span class="o">=</span> <span class="n">zcl_stvarv_extract</span><span class="o">=&gt;</span><span class="n">get_parameters</span><span class="p">(</span> <span class="s1">'Z_WERKS_%'</span> <span class="p">).</span>
+
+<span class="cm">* 3 - Searching for a range of parameters (LOW values)</span>
+<span class="k">REFRESH</span> <span class="n">lr_range</span><span class="p">.</span>
+<span class="n">lv_range</span><span class="o">-</span><span class="k">sign</span> <span class="o">=</span> <span class="s1">'I'</span><span class="p">.</span>
+<span class="n">lv_range</span><span class="o">-</span><span class="k">option</span> <span class="o">=</span> <span class="s1">'EQ'</span><span class="p">.</span>
+
+<span class="n">lv_range</span><span class="o">-</span><span class="k">low</span> <span class="o">=</span> <span class="s1">'Z_BUKRS'</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="n">lv_range</span> <span class="k">TO</span> <span class="n">lr_range</span><span class="p">.</span>
+
+<span class="n">lv_range</span><span class="o">-</span><span class="k">low</span> <span class="o">=</span> <span class="s1">'Z_WERDS'</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="n">lv_range</span> <span class="k">TO</span> <span class="n">lr_range</span><span class="p">.</span>
+
+<span class="n">lv_range</span><span class="o">-</span><span class="k">low</span> <span class="o">=</span> <span class="s1">'Z_GJAHR'</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="n">lv_range</span> <span class="k">TO</span> <span class="n">lr_range</span><span class="p">.</span>
+
+<span class="n">lr_range_result</span> <span class="o">=</span> <span class="n">zcl_stvarv_extract</span><span class="o">=&gt;</span><span class="n">get_parameters_by_range</span><span class="p">(</span> <span class="n">lr_range</span> <span class="p">).</span>
+
+<span class="cm">* 4 - Seeking a "Select Options"</span>
+<span class="k">REFRESH</span> <span class="n">lr_range_result</span><span class="p">.</span>
+<span class="n">lr_range_result</span> <span class="o">=</span> <span class="n">zcl_stvarv_extract</span><span class="o">=&gt;</span><span class="n">get_selection_options</span><span class="p">(</span> <span class="s1">'Z_SELECTION_PARAM'</span><span class="p">).</span>
+</code></pre></div></div>
+
+<p>Assim que tiver mais tempo, colocarei mais classes, rotinas e códigos para facilitar o desenvolvimento ABAP aqui no blog.</p>
+
+<p>Abraços.</p>
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+                <figure class="author-image">
+                    <a class="img" href="/" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">Breno Augusto Cruz Faria's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> Breno Augusto Cruz Faria </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        Programador, engenheiro, apaixonado por música, minha família e pela vida.
+                    </p>
+                </section>
+            
+
+            <!-- Share links section -->
+            <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=#1 Abap  Hacks Stvarv&amp;url=/sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=/sap/abap/2020/03/02/1-Abap-Hacks-STVARV.html"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/">brenoacf Blog</a> &copy; 
+              2020 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>
