@@ -17,3 +17,5 @@ gems: [jekyll-paginate]
 # Details for the RSS feed generator
 url:            'https://brenoacf.github.io'
 author:         'Breno Augusto Cruz Faria'
+
+theme: jekyll-theme-slate
